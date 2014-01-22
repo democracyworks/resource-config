@@ -15,14 +15,14 @@ Add to your project.clj's dependencies:
 2. Use turbovote.resource-config!
 
 ```clojure
-# config.edn
+; config.edn
 {:server {:hostname "localhost"
           :port 8080}
  :startup-message "Hello, world!"}
 ```
 
 ```clojure
-# core.clj
+; core.clj
 (ns my-app.core
   (:require [turbovote.resource-config :refer [config]]))
 
