@@ -7,7 +7,7 @@
    (fn []
      (let [file (io/resource "config.edn")]
        (with-open [r (io/reader file)]
-         (edn/read (java.io.PushbackReader. r)))))))
+         (edn/read {:readers *data-readers*} (java.io.PushbackReader. r)))))))
 
 (defn config [& keys]
   (get-in (read-config) keys))
