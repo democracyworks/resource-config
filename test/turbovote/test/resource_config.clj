@@ -6,3 +6,6 @@
   (is (= (config :startup-message) "Hello, world!"))
   (is (= (config :server :host) "localhost"))
   (is (= (config :server :port) 8080)))
+
+(deftest env-test
+  (is (re-find #"java" (config :program))))

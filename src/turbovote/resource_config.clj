@@ -1,5 +1,6 @@
 (ns turbovote.resource-config
-  (:require [clojure.edn :as edn]
+  (:require [turbovote.resource-config.data-readers]
+            [clojure.edn :as edn]
             [clojure.java.io :as io]))
 
 (def read-config

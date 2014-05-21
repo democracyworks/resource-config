@@ -18,7 +18,8 @@ Add to your project.clj's dependencies:
 ; config.edn
 {:server {:hostname "localhost"
           :port 8080}
- :startup-message "Hello, world!"}
+ :startup-message "Hello, world!"
+ :auth-token #resource-config/env "AUTH_TOKEN"}
 ```
 
 ```clojure
@@ -29,6 +30,13 @@ Add to your project.clj's dependencies:
 (defn running-locally? []
   (= "localhost" (config :server :hostname)))
 ```
+
+### Data readers
+
+The following data readers are provided:
+
+* `#resource-config/env`: The value is set from the environment
+  variable named.
 
 ## License
 
