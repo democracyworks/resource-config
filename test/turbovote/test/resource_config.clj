@@ -12,6 +12,6 @@
 
 (deftest missing-config-test
   (is (thrown-with-msg?
-       Exception #"Config file __missing__\.edn not found in resource paths"
+       java.io.FileNotFoundException #"Config file __missing__\.edn not found in resource paths"
        (with-redefs [turbovote.resource-config/config-file-name "__missing__.edn"]
          (config :foo)))))

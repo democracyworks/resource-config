@@ -11,7 +11,8 @@
      (if-let [file (io/resource config-file)]
        (with-open [r (io/reader file)]
          (edn/read {:readers *data-readers*} (java.io.PushbackReader. r)))
-       (throw (Exception. (str "Config file " config-file " not found in resource paths.")))))))
+       (throw (java.io.FileNotFoundException.
+               (str "Config file " config-file " not found in resource paths.")))))))
 
 (defn config [& keys]
   (get-in (read-config config-file-name) keys))
