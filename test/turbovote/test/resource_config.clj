@@ -9,3 +9,9 @@
 
 (deftest env-test
   (is (re-find #"java" (config :program))))
+
+(deftest missing-config-test
+  (is (thrown-with-msg?
+       java.io.FileNotFoundException #"Config file __missing__\.edn not found in resource paths"
+       (with-redefs [turbovote.resource-config/config-file-name "__missing__.edn"]
+         (config :foo)))))
