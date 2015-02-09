@@ -10,6 +10,9 @@
 (deftest env-test
   (is (re-find #"java" (config :program))))
 
+(deftest edn-test
+  (is (= [1 {:set #{:a :b}}] (config :edn))))
+
 (deftest missing-config-test
   (is (thrown-with-msg?
        java.io.FileNotFoundException #"Config file __missing__\.edn not found in resource paths"
