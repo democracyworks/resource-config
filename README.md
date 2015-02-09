@@ -37,6 +37,9 @@ The following data readers are provided:
 
 * `#resource-config/env`: The value is set from the environment
   variable named.
+* `#resource-config/edn`: The value is read from an [edn][edn] string.
+
+[edn]: https://github.com/edn-format/edn
 
 ## License
 
