@@ -8,7 +8,7 @@ available in your resources.
 Add to your project.clj's dependencies:
 
 ```clojure
-[turbovote.resource-config "0.1.4"]
+[turbovote.resource-config "0.2.0"]
 ```
 
 1. Create a `config.edn` file in your classpath.
@@ -27,8 +27,13 @@ Add to your project.clj's dependencies:
 (ns my-app.core
   (:require [turbovote.resource-config :refer [config]]))
 
+;; this will throw an exception if the value is not in the config
 (defn running-locally? []
-  (= "localhost" (config :server :hostname)))
+  (= "localhost" (config [:server :hostname])))
+
+;; you can set a default value like this (never throws exception)
+(defn get-database-url []
+  (config [:database :url] "postgres://default-db"))
 ```
 
 ### Data readers

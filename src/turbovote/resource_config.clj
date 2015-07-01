@@ -14,5 +14,37 @@
        (throw (java.io.FileNotFoundException.
                (str "Config file " config-file " not found in resource paths.")))))))
 
-(defn config [& keys]
-  (get-in (read-config config-file-name) keys))
+(defn config
+  "Read a value from the configuration file at `keys` (`keys` is a
+  path of keys as used in `get-in`). There are two arities.
+
+  If the file does not exist, throws a FileNotFoundException.
+
+  If a value at `keys` does exist, returns it.
+
+  If a value at `keys` does not exist and no `default` is given (single
+  argument), throws an exception.
+
+  If a value at `keys` does not exist and a `default` is given,
+  returns the default."
+  ([keys]
+   (let [config (read-config config-file-name)
+         val (get-in config keys ::not-found)]
+     (when (= ::not-found val)
+       (throw (ex-info
+               (str "Hey! I went looking for these keys ("
+                    (pr-str keys)
+                    ") in the config "
+                    "and I couldn't find them.")
+               {:keys keys
+                :config config
+                :config-filename (-> config-file-name
+                                     io/resource
+                                     io/file
+                                     str)})))
+     val))
+  ([keys default]
+   (let [val (get-in (read-config config-file-name) keys ::not-found)]
+     (if (= ::not-found val)
+       default
+       val))))
