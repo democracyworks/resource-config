@@ -38,13 +38,9 @@
                     "and I couldn't find them.")
                {:keys keys
                 :config config
-                :config-filename (-> config-file-name
-                                     io/resource
-                                     io/file
-                                     str)})))
+                :config-uri (-> config-file-name
+                                io/resource
+                                str)})))
      val))
   ([keys default]
-   (let [val (get-in (read-config config-file-name) keys ::not-found)]
-     (if (= ::not-found val)
-       default
-       val))))
+   (get-in (read-config config-file-name) keys default)))
