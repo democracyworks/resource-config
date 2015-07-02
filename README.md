@@ -48,7 +48,7 @@ The following data readers are provided:
 
 ## License
 
-Copyright © 2014 TurboVote
+Copyright © 2015 TurboVote
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
