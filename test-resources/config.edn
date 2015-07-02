@@ -2,4 +2,6 @@
           :port 8080}
  :startup-message "Hello, world!"
  :program #resource-config/env "_"
- :edn #resource-config/edn "[1 {:set #{:a :b}}]"}
+ :edn #resource-config/edn "[1 {:set #{:a :b}}]"
+ :test {:false false
+        :nil nil}}

@@ -1,4 +1,4 @@
-(defproject turbovote.resource-config "0.1.5-SNAPSHOT"
+(defproject turbovote.resource-config "0.2.0-SNAPSHOT"
   :description "Simple (too simple?) configuration handling"
   :url "http://github.com/turbovote/resource-config"
   :license {:name "Eclipse Public License"
