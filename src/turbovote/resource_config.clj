@@ -27,6 +27,7 @@
 
   If a value at `keys` does not exist and a `default` is given,
   returns the default."
+  ([] (config []))
   ([keys]
    (let [config (read-config config-file-name)
          val (get-in config keys ::not-found)]
