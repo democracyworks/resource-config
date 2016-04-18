@@ -1,5 +1,16 @@
 # Change Log
 
+## Changes between resource-config 0.2.0 and HEAD
+
+### renamed
+
+**This is a breaking change**
+
+The project has been renamed from `turbovote.resource-config` to
+`democracyworks/resource-config`. This means your project.clj dependency should
+become: `[democracyworks/resource-config "version"]` and your code requires
+should become: `[resource-config.core :refer [config]]`.
+
 ## Changes between resource-config 0.1.4 and 0.2.0
 
 ### `config` takes a sequence of keys and an optional default value

@@ -1,4 +1,4 @@
-(ns turbovote.resource-config.data-readers
+(ns resource-config.data-readers
   (require [clojure.edn :as edn]))
 
 (defn env [variable]
