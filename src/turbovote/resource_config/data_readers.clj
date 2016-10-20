@@ -6,3 +6,8 @@
 
 (defn edn [str]
   (edn/read-string {:readers *data-readers*} str))
+
+(defn url [url-spec]
+  {:pre [(and (contains? url-spec :url)
+              (contains? url-spec :default))]}
+  (with-meta url-spec {:url-spec true}))
