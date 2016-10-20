@@ -1,5 +1,6 @@
 (ns turbovote.resource-config
   (:require [turbovote.resource-config.data-readers]
+            [turbovote.resource-config.cache :as cache]
             [clojure.edn :as edn]
             [clojure.java.io :as io]))
 
@@ -30,8 +31,8 @@
   ([] (config []))
   ([keys]
    (let [config (read-config config-file-name)
-         val (get-in config keys ::not-found)]
-     (when (= ::not-found val)
+         value (get-in config keys ::not-found)]
+     (when (= ::not-found value)
        (throw (ex-info
                (str "Hey! I went looking for these keys ("
                     (pr-str keys)
@@ -42,6 +43,11 @@
                 :config-uri (-> config-file-name
                                 io/resource
                                 str)})))
-     val))
+     (if (:url-spec (meta value))
+       (cache/lookup value)
+       value)))
   ([keys default]
-   (get-in (read-config config-file-name) keys default)))
+   (let [value (get-in (read-config config-file-name) keys default)]
+     (if (:url-spec (meta value))
+       (cache/lookup value)
+       value))))

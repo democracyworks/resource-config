@@ -4,4 +4,6 @@
  :program #resource-config/env "_"
  :edn #resource-config/edn "[1 {:set #{:a :b}}]"
  :test {:false false
-        :nil nil}}
+        :nil nil}
+ :remote #resource-config/url {:url "http://localhost:6463/remote"
+                               :default "default"}}
