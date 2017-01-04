@@ -1,5 +1,9 @@
 # Change Log
 
+## Changes between resource-config 0.2.0 and 0.2.1
+
+`require` syntax fix to ensure compatibility with clojure.spec/Clojure 1.9
+
 ## Changes between resource-config 0.1.4 and 0.2.0
 
 ### `config` takes a sequence of keys and an optional default value
