@@ -8,7 +8,7 @@ available in your resources.
 Add to your project.clj's dependencies:
 
 ```clojure
-[turbovote.resource-config "0.2.0"]
+[turbovote.resource-config "0.2.1"]
 ```
 
 1. Create a `config.edn` file in your classpath.
