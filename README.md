@@ -1,7 +1,9 @@
 # resource-config
 
+# *DEPRECATED* please use [Aero][aero] instead
+
 A Clojure library for reading a *single* EDN configuration file
-available in your resources.
+available in your resources. It wraps [aero][aero] and provides some convenience functions.
 
 [![Build Status](https://travis-ci.com/democracyworks/resource-config.svg?branch=master)](https://travis-ci.com/democracyworks/resource-config)
 
@@ -21,7 +23,7 @@ Note that previous versions used a `[turbovote/resource-config]` dependency! Thi
 {:server {:hostname "localhost"
           :port 8080}
  :startup-message "Hello, world!"
- :auth-token #resource-config/env "AUTH_TOKEN"}
+ :auth-token #env "AUTH_TOKEN"}
 ```
 
 ```clojure
@@ -58,15 +60,24 @@ Note that previous versions used a `[turbovote/resource-config]` dependency! Thi
 
 The following data readers are provided:
 
-* `#resource-config/env`: The value is set from the environment
-  variable named.
 * `#resource-config/edn`: The value is read from an [edn][edn] string.
 
-[edn]: https://github.com/edn-format/edn
+
+
+## tests
+
+There is a lein plugin that sets environment vars. This allows them to be checked into
+the repo. It needs to be invoked, so run the tests like this: 
+```
+lein with-env-vars test
+```
 
 ## License
 
-Copyright © 2015-2018 Democracy Works, Inc.
+Copyright © 2015-2020 Democracy Works, Inc.
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
+
+[edn]: https://github.com/edn-format/edn
+[aero]: https://github.com/juxt/aero

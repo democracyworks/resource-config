@@ -1,5 +1,6 @@
 (ns resource-config.core
   (:require [clojure.core.memoize :as memo]
+            [aero.core :as a]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
             [resource-config.data-readers])
@@ -11,9 +12,8 @@
   (memo/memo
    (fn [config-file]
      (if-let [file (io/resource config-file)]
-       (with-open [r (io/reader file)]
-         (edn/read {:readers *data-readers*} (PushbackReader. r)))
-       (throw (FileNotFoundException.
+       (a/read-config file)
+       (throw (java.io.FileNotFoundException.
                (str "Config file " config-file " not found in resource paths.")))))))
 
 (defn reload-config! []

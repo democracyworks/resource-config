@@ -9,11 +9,17 @@
   (is (= (config [:server :host]) "localhost"))
   (is (= (config [:server :port]) 8080)))
 
-(deftest env-test
-  (is (re-find #"java" (config [:program]))))
+(deftest edn-env-test
+  (testing "edn can be used after the env reader"
+    (is (number? (config [:edn-env-reader])))))
 
 (deftest edn-test
   (is (= [1 {:set #{:a :b}}] (config [:edn]))))
+
+(deftest aero-test
+  (is (not-empty (config [:shell])) "environment variable found")
+  (is (number? (config [:columns])) "environment variable turned into a long")
+  (is (= "default-found" (config [:fallback]))) "#or reader and a default")
 
 (deftest config-missing-test
   (testing "non-existing paths throw an exception"
