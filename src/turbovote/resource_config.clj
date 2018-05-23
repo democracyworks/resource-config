@@ -1,5 +1,6 @@
 (ns turbovote.resource-config
   (:require [turbovote.resource-config.data-readers]
+            [aero.core :as a]
             [clojure.edn :as edn]
             [clojure.java.io :as io]))
 
@@ -9,8 +10,7 @@
   (memoize
    (fn [config-file]
      (if-let [file (io/resource config-file)]
-       (with-open [r (io/reader file)]
-         (edn/read {:readers *data-readers*} (java.io.PushbackReader. r)))
+       (a/read-config file)
        (throw (java.io.FileNotFoundException.
                (str "Config file " config-file " not found in resource paths.")))))))
 

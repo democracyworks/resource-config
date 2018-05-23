@@ -2,6 +2,9 @@
           :port 8080}
  :startup-message "Hello, world!"
  :program #resource-config/env "_"
+ :shell #env "SHELL"
+ :columns #long #env COLUMNS
+ :fallback #or [#resource-config/env "nothing" "default-found"]
  :edn #resource-config/edn "[1 {:set #{:a :b}}]"
  :test {:false false
         :nil nil}}
