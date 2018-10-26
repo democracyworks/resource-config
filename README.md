@@ -8,11 +8,11 @@ available in your resources.
 Add to your project.clj's dependencies:
 
 ```clojure
-[turbovote.resource-config "0.2.1"]
+[democracyworks/resource-config "0.2.2-SNAPSHOT"]
 ```
 
 1. Create a `config.edn` file in your classpath.
-2. Use turbovote.resource-config!
+2. Use resource-config!
 
 ```clojure
 ; config.edn
@@ -25,7 +25,7 @@ Add to your project.clj's dependencies:
 ```clojure
 ; core.clj
 (ns my-app.core
-  (:require [turbovote.resource-config :refer [config]]))
+  (:require [resource-config :refer [config]]))
 
 ;; this will throw an exception if the value is not in the config
 (defn running-locally? []
@@ -48,7 +48,7 @@ The following data readers are provided:
 
 ## License
 
-Copyright © 2015 TurboVote
+Copyright © 2015-2018 Democracy Works, Inc.
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

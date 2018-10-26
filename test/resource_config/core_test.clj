@@ -1,6 +1,6 @@
-(ns turbovote.resource-config-test
+(ns resource-config.core-test
   (:require [clojure.test :refer :all]
-            [turbovote.resource-config :refer [config]]))
+            [resource-config.core :refer [config]]))
 
 (deftest config-test
   (is (= (config [:startup-message]) "Hello, world!"))
@@ -30,5 +30,5 @@
 (deftest missing-config-test
   (is (thrown-with-msg?
        java.io.FileNotFoundException #"Config file __missing__\.edn not found in resource paths"
-       (with-redefs [turbovote.resource-config/config-file-name "__missing__.edn"]
+       (with-redefs [resource-config.core/config-file-name "__missing__.edn"]
          (config :foo)))))

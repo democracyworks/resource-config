@@ -1,5 +1,5 @@
-(ns turbovote.resource-config
-  (:require [turbovote.resource-config.data-readers]
+(ns resource-config.core
+  (:require [resource-config.data-readers]
             [clojure.edn :as edn]
             [clojure.java.io :as io]))
 
