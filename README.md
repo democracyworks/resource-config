@@ -25,7 +25,7 @@ Add to your project.clj's dependencies:
 ```clojure
 ; core.clj
 (ns my-app.core
-  (:require [resource-config :refer [config]]))
+  (:require [resource-config.core :refer [config]]))
 
 ;; this will throw an exception if the value is not in the config
 (defn running-locally? []
