@@ -1,5 +1,31 @@
 # Change Log
 
+## Changes between resource-config 0.2.1 and 1.0.0-SNAPSHOT
+
+### Added a `resource-config.core/reload-config!` fn
+
+This resets the internal config state so that subsequent calls to
+`resource-config.core/config` will pick up changes in your config file. This is
+handy for integrating with application lifecycle managers like
+[component](https://github.com/stuartsierra/component),
+[integrant](https://github.com/weavejester/integrant),
+and [mount](https://github.com/tolitius/mount).
+
+### Renamed the library to democracyworks/resource-config
+
+**This is a breaking change**
+
+Renamed the library to democracyworks/resource-config and removed
+`turbovote` from the namespaces. This is how our other libraries
+are named and organized, but we hadn't gotten around to this one yet.
+
+To use this version, change your lein dependency from:
+`[turbovote.resource-config "n.n.n"]` to:
+`[democracyworks/resource-config "1.0.0"]`.
+...and then change your requires from:
+`[turbovote.resource-config :refer [config]]` to:
+`[resource-config.core :refer [config]]`.
+
 ## Changes between resource-config 0.2.0 and 0.2.1
 
 `require` syntax fix to ensure compatibility with clojure.spec/Clojure 1.9
