@@ -36,6 +36,22 @@ Add to your project.clj's dependencies:
   (config [:database :url] "postgres://default-db"))
 ```
 
+### Using it with the mount library
+
+```clojure
+(ns my-app.core
+  (:require [mount.core :refer [defstate] :as mount]
+            [resource-config.core :as rc]))
+  
+(defstate config
+  :start rc/config
+  :stop (rc/reload-config!))
+  
+(mount/start)
+
+(config [:database :url] "postgres://default-db")
+```
+
 ### Data readers
 
 The following data readers are provided:
