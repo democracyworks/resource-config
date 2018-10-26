@@ -1,18 +1,23 @@
 (ns resource-config.core
-  (:require [resource-config.data-readers]
+  (:require [clojure.core.memoize :as memo]
             [clojure.edn :as edn]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [resource-config.data-readers])
+  (:import (java.io FileNotFoundException PushbackReader)))
 
 (def config-file-name "config.edn")
 
 (def read-config
-  (memoize
+  (memo/memo
    (fn [config-file]
      (if-let [file (io/resource config-file)]
        (with-open [r (io/reader file)]
-         (edn/read {:readers *data-readers*} (java.io.PushbackReader. r)))
-       (throw (java.io.FileNotFoundException.
+         (edn/read {:readers *data-readers*} (PushbackReader. r)))
+       (throw (FileNotFoundException.
                (str "Config file " config-file " not found in resource paths.")))))))
+
+(defn reload-config! []
+  (memo/memo-clear! read-config [config-file-name]))
 
 (defn config
   "Read a value from the configuration file at `keys` (`keys` is a
