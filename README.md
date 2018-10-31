@@ -5,14 +5,12 @@ available in your resources.
 
 ## Usage
 
-Add to your project.clj's dependencies:
+Add to your project's dependencies:
 
-```clojure
-[turbovote.resource-config "0.2.1"]
-```
+[![Clojars Project](https://img.shields.io/clojars/v/democracyworks/resource-config.svg)](https://clojars.org/democracyworks/resource-config)
 
 1. Create a `config.edn` file in your classpath.
-2. Use turbovote.resource-config!
+2. Use resource-config!
 
 ```clojure
 ; config.edn
@@ -25,7 +23,7 @@ Add to your project.clj's dependencies:
 ```clojure
 ; core.clj
 (ns my-app.core
-  (:require [turbovote.resource-config :refer [config]]))
+  (:require [resource-config.core :refer [config]]))
 
 ;; this will throw an exception if the value is not in the config
 (defn running-locally? []
@@ -34,6 +32,22 @@ Add to your project.clj's dependencies:
 ;; you can set a default value like this (never throws exception)
 (defn get-database-url []
   (config [:database :url] "postgres://default-db"))
+```
+
+### Using it with the mount library
+
+```clojure
+(ns my-app.core
+  (:require [mount.core :refer [defstate] :as mount]
+            [resource-config.core :as rc]))
+  
+(defstate config
+  :start rc/config
+  :stop (rc/reload-config!))
+  
+(mount/start)
+
+(config [:database :url] "postgres://default-db")
 ```
 
 ### Data readers
@@ -48,7 +62,7 @@ The following data readers are provided:
 
 ## License
 
-Copyright © 2015 TurboVote
+Copyright © 2015-2018 Democracy Works, Inc.
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

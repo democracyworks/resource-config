@@ -1,6 +1,8 @@
-(ns turbovote.resource-config-test
+(ns resource-config.core-test
   (:require [clojure.test :refer :all]
-            [turbovote.resource-config :refer [config]]))
+            [resource-config.core :refer [config reload-config!]])
+  (:import (java.io FileNotFoundException)
+           (clojure.lang ExceptionInfo)))
 
 (deftest config-test
   (is (= (config [:startup-message]) "Hello, world!"))
@@ -15,7 +17,7 @@
 
 (deftest config-missing-test
   (testing "non-existing paths throw an exception"
-    (is (thrown? clojure.lang.ExceptionInfo
+    (is (thrown? ExceptionInfo
                  (config [:some :random :path :that :does :not :exist]))))
   (testing "false and nil in the config does not trigger exception"
     (is (false? (config [:test :false])))
@@ -29,6 +31,12 @@
 
 (deftest missing-config-test
   (is (thrown-with-msg?
-       java.io.FileNotFoundException #"Config file __missing__\.edn not found in resource paths"
-       (with-redefs [turbovote.resource-config/config-file-name "__missing__.edn"]
+       FileNotFoundException #"Config file __missing__\.edn not found in resource paths"
+       (with-redefs [resource-config.core/config-file-name "__missing__.edn"]
          (config :foo)))))
+
+(deftest reloaded-config-test
+  (is (= (config [:startup-message]) "Hello, world!"))
+  (reload-config!)
+  (with-redefs [resource-config.core/config-file-name "other-config.edn"]
+    (is (= (config [:startup-message]) "Hello, upside down!"))))
