@@ -3,6 +3,8 @@
 A Clojure library for reading a *single* EDN configuration file
 available in your resources.
 
+[![Build Status](https://travis-ci.com/democracyworks/resource-config.svg?branch=master)](https://travis-ci.com/democracyworks/resource-config)
+
 ## Usage
 
 Add to your project's dependencies:
