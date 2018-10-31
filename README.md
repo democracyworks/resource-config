@@ -5,11 +5,9 @@ available in your resources.
 
 ## Usage
 
-Add to your project.clj's dependencies:
+Add to your project's dependencies:
 
-```clojure
-[democracyworks/resource-config "0.2.2-SNAPSHOT"]
-```
+[![Clojars Project](https://img.shields.io/clojars/v/democracyworks/resource-config.svg)](https://clojars.org/democracyworks/resource-config)
 
 1. Create a `config.edn` file in your classpath.
 2. Use resource-config!
