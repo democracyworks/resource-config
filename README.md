@@ -11,6 +11,8 @@ Add to your project's dependencies:
 
 [![Clojars Project](https://img.shields.io/clojars/v/democracyworks/resource-config.svg)](https://clojars.org/democracyworks/resource-config)
 
+Note that previous versions used a `[turbovote/resource-config]` dependency! This must be changed when updating to 1.0.0.
+
 1. Create a `config.edn` file in your classpath.
 2. Use resource-config!
 
