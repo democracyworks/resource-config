@@ -1,7 +1,10 @@
 {:server {:host "localhost"
           :port 8080}
  :startup-message "Hello, world!"
- :program #resource-config/env "_"
+ :edn-env-reader #resource-config/edn #env "EXAMPLE_VAR"
+ :shell #resource-config/env "SHELL"
+ :columns #long #env EXAMPLE_VAR
+ :fallback #or [#env "nothing" "default-found"]
  :edn #resource-config/edn "[1 {:set #{:a :b}}]"
  :test {:false false
         :nil nil}}
