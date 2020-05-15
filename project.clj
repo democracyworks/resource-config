@@ -1,4 +1,4 @@
-(defproject democracyworks/resource-config "1.1.0"
+(defproject democracyworks/resource-config "1.1.1"
   :description "Simple (too simple?) configuration handling"
   :url "http://github.com/democracyworks/resource-config"
   :license {:name "Eclipse Public License"
