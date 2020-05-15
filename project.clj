@@ -10,5 +10,6 @@
   :deploy-repositories [["releases" :clojars]
                         ["snapshots" :clojars]]
 
-  :env-vars {:EXAMPLE_VAR "123"}
+  :env-vars {:EXAMPLE_VAR "123"
+             :AERO_PROFILE "example-profile"}
   :plugins [[lein-with-env-vars "0.2.0"]])

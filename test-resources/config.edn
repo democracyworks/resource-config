@@ -5,6 +5,10 @@
  :shell #resource-config/env "SHELL"
  :columns #long #env EXAMPLE_VAR
  :fallback #or [#env "nothing" "default-found"]
+ :profile #profile {:not-a-profile :not-used
+                    :default :a-default}
+ :profile2 #profile {:example-profile :not-default
+                     :default :not-used}
  :edn #resource-config/edn "[1 {:set #{:a :b}}]"
  :test {:false false
         :nil nil}}

@@ -12,7 +12,7 @@
   (memo/memo
    (fn [config-file]
      (if-let [file (io/resource config-file)]
-       (a/read-config file)
+       (a/read-config file {:profile (keyword (System/getenv "AERO_PROFILE"))})
        (throw (java.io.FileNotFoundException.
                (str "Config file " config-file " not found in resource paths.")))))))
 

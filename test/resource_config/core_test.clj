@@ -21,6 +21,10 @@
   (is (number? (config [:columns])) "environment variable turned into a long")
   (is (= "default-found" (config [:fallback]))) "#or reader and a default")
 
+(deftest aero-profile
+  (is (= :a-default (config [:profile])) "uses default")
+  (is (= :not-default (config [:profile2])) "uses AERO_PROFILE env var"))
+
 (deftest config-missing-test
   (testing "non-existing paths throw an exception"
     (is (thrown? ExceptionInfo
