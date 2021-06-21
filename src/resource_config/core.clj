@@ -1,12 +1,18 @@
 (ns resource-config.core
   (:require [clojure.core.memoize :as memo]
             [aero.core :as a]
+            [aero.alpha.core]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
             [resource-config.data-readers])
   (:import (java.io FileNotFoundException PushbackReader)))
 
 (def config-file-name "config.edn")
+
+(defmethod a/reader 'role
+  [opts tag value]
+  (get value (keyword (System/getenv "AERO_ROLE"))
+       (get value :default)))
 
 (def read-config
   (memo/memo

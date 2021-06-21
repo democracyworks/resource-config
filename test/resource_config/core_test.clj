@@ -25,6 +25,10 @@
   (is (= :a-default (config [:profile])) "uses default")
   (is (= :not-default (config [:profile2])) "uses AERO_PROFILE env var"))
 
+(deftest aero-role
+  (is (= :a-default (config [:role-default])) "uses default")
+  (is (= :bg (config [:role-test])) "uses AERO_ROLE env var"))
+
 (deftest config-missing-test
   (testing "non-existing paths throw an exception"
     (is (thrown? ExceptionInfo
