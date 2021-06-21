@@ -9,6 +9,10 @@
                     :default :a-default}
  :profile2 #profile {:example-profile :not-default
                      :default :not-used}
+ :role-test #role {:bg :bg
+                   :default :a-default}
+ :role-default #role {:web :not-default
+                      :default :a-default}
  :edn #resource-config/edn "[1 {:set #{:a :b}}]"
  :test {:false false
         :nil nil}}

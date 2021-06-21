@@ -62,7 +62,13 @@ The following data readers are provided:
 
 * `#resource-config/edn`: The value is read from an [edn][edn] string.
 
+### Set env vars AERO_PROFILE and AERO_ROLE
 
+see test-resources/config.edn for examples and test env vars in project.clj 
+
+In config.edn, with the env var "AERO_PROFILE" set to "a", `#profile {:a 1 :b 2 :default 0}`, will result in `1`. If "AERO_PROFILE" is not set, the result will be the default, `0`. 
+
+The same behavior is true for the `#role` reader macro and the "AERO_ROLE" env var.
 
 ## tests
 
